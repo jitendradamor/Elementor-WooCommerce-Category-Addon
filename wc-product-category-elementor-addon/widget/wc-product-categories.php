@@ -381,10 +381,9 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			}
 
 			.image-grid-item img {
-				width: auto; /* Allow natural width */
+				width: 100%; /* Allow natural width */
 				height: auto; /* Maintain aspect ratio */
-				max-width: 100%; /* Prevent overly large images (set as per your design) */
-				max-height: 100%; /* Prevent overly tall images */
+				max-width: 300px;
 				object-fit: cover;
 				border-radius: <?php echo esc_attr( $settings['image_grid_item_border_radius']['size'] . $settings['image_grid_item_border_radius']['unit'] ); ?>;
 			}
