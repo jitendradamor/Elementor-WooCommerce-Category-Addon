@@ -359,38 +359,38 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 		?>
 		<style>
-		.image-grid p {
-			margin: 10px auto;
-		}
-        .image-grid {
-            display: grid;
-            gap: <?php echo esc_attr( $settings['image_grid_item_spacing']['size'] . $settings['image_grid_item_spacing']['unit'] ); ?>;
-            grid-template-columns: repeat(<?php echo esc_attr( $settings['image_grid_columns'] ); ?>, 1fr);
-            text-align: center;
-        }
+			.image-grid p {
+				margin: 10px auto;
+			}
+			.image-grid {
+				display: grid;
+				gap: <?php echo esc_attr( $settings['image_grid_item_spacing']['size'] . $settings['image_grid_item_spacing']['unit'] ); ?>;
+				grid-template-columns: repeat(<?php echo esc_attr( $settings['image_grid_columns'] ); ?>, 1fr);
+				text-align: center;
+			}
 
-        .image-grid-item {
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
+			.image-grid-item {
+				position: relative;
+				overflow: hidden;
+				transition: transform 0.3s ease;
+			}
 
-        .image-grid-item img {
-            width: 100%;
-            height: auto;
-            border-radius: <?php echo esc_attr( $settings['image_grid_item_border_radius']['size'] . $settings['image_grid_item_border_radius']['unit'] ); ?>;
-        }
+			.image-grid-item img {
+				width: 100%;
+				height: auto;
+				border-radius: <?php echo esc_attr( $settings['image_grid_item_border_radius']['size'] . $settings['image_grid_item_border_radius']['unit'] ); ?>;
+			}
 
-        .image-grid-item:hover {
-            transform: scale(1.02);
-        }
+			.image-grid-item:hover {
+				transform: scale(1.02);
+			}
 
-        .image-grid-item p.image-caption {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-    </style><?php
+			.image-grid-item p.image-caption {
+				margin-top: 10px;
+				font-weight: bold;
+				color: #333;
+			}
+		</style><?php
 		if ( !empty( $settings['title'] ) ) { ?>
 			<div class="section-title">
 				<?php echo $settings['title']; ?>
