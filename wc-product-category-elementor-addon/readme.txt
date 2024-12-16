@@ -1,4 +1,4 @@
-# Elementor WooCommerce Categories Widget
+# WC Product Category Elementor Addon
 
 A custom Elementor widget to display WooCommerce product categories with their images, names, and permalinks. This plugin provides a flexible and customizable way to showcase WooCommerce product categories on your website.
 
@@ -26,7 +26,7 @@ A custom Elementor widget to display WooCommerce product categories with their i
 
 ## Usage
 
-1. Drag the **WooCommerce Categories** widget onto your Elementor page.
+1. Drag the **WC Product Categories** widget onto your Elementor page.
 2. Configure the following options:
    - **Title:** Add a title to display above the categories.
    - **Description:** Add a short description below the title.

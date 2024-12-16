@@ -1,5 +1,5 @@
 <?php
-class WooCommerce_Categories extends \Elementor\Widget_Base {
+class WC_Product_Categories extends \Elementor\Widget_Base {
 
 	private function get_product_categories(): array {
 		$categories = get_terms([
@@ -18,15 +18,15 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 	}
 
 	public function get_name(): string {
-		return 'WooCommerce_Categories';
+		return 'WC_Product_Categories';
 	}
 
 	public function get_title(): string {
-		return esc_html__( 'WooCommerce Categories', 'elementor-addon' );
+		return esc_html__( 'WC Product Categories', 'elementor-addon' );
 	}
 
 	public function get_icon(): string {
-		return 'eicon-gallery-grid';
+		return 'eicon-wordpress';
 	}
 
 	public function get_categories(): array {
@@ -144,7 +144,7 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 		// Title - Style Tab End
-		
+
 		// Description - Style Tab Start
 		$this->start_controls_section(
 			'section_description_style',
@@ -359,14 +359,15 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 		?>
 		<style>
-			.image-grid p {
-				margin: 10px auto;
+			.product-categories-grid {
+				display: flex; /* Use Flexbox for centering */
+				justify-content: center; /* Center horizontally */
+				align-items: center; /* Center vertically */
 			}
 
 			.image-grid {
 				display: grid;
 				gap: <?php echo esc_attr( $settings['image_grid_item_spacing']['size'] . $settings['image_grid_item_spacing']['unit'] ); ?>;
-				grid-template-columns: repeat(<?php echo esc_attr( $settings['image_grid_columns'] ); ?>, 1fr);
 				text-align: center;
 			}
 
@@ -374,16 +375,26 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 				position: relative;
 				overflow: hidden;
 				transition: transform 0.3s ease;
+				display: flex; /* Ensures centering */
+				align-items: center; /* Centers vertically */
+				justify-content: center; /* Centers horizontally */
 			}
 
 			.image-grid-item img {
-				width: 100%;
-				height: auto;
+				width: auto; /* Allow natural width */
+				height: auto; /* Maintain aspect ratio */
+				max-width: 100%; /* Prevent overly large images (set as per your design) */
+				max-height: 100%; /* Prevent overly tall images */
+				object-fit: cover;
 				border-radius: <?php echo esc_attr( $settings['image_grid_item_border_radius']['size'] . $settings['image_grid_item_border_radius']['unit'] ); ?>;
 			}
 
 			.image-grid-item:hover {
 				transform: scale(1.02);
+			}
+
+			.image-grid p {
+				margin: 10px auto;
 			}
 		</style><?php
 		if ( !empty( $settings['title'] ) ) { ?>
@@ -427,17 +438,4 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 			echo '</div>';
 		}
 	}
-
-	/*protected function content_template(): void {
-		?>
-		<#
-		if ( '' === settings.title ) {
-			return;
-		}
-		#>
-		<p class="hello-world">
-			{{ settings.title }}
-		</p>
-		<?php
-	}*/
 }
