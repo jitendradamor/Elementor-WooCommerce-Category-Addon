@@ -362,6 +362,7 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 			.image-grid p {
 				margin: 10px auto;
 			}
+
 			.image-grid {
 				display: grid;
 				gap: <?php echo esc_attr( $settings['image_grid_item_spacing']['size'] . $settings['image_grid_item_spacing']['unit'] ); ?>;
@@ -383,12 +384,6 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 
 			.image-grid-item:hover {
 				transform: scale(1.02);
-			}
-
-			.image-grid-item p.image-caption {
-				margin-top: 10px;
-				font-weight: bold;
-				color: #333;
 			}
 		</style><?php
 		if ( !empty( $settings['title'] ) ) { ?>
