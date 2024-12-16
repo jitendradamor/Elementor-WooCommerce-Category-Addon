@@ -30,7 +30,7 @@ class WooCommerce_Categories extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories(): array {
-		return [ 'general' ];
+		return [ 'wordpress' ];
 	}
 
 	public function get_keywords(): array {
