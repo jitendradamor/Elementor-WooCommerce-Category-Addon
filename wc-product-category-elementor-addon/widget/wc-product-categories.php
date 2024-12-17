@@ -121,8 +121,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 				'default' => 'none',
 				'options' => [
 					'none'  => esc_html__( 'Default', 'elementor-addon' ),
-					'name'  => esc_html__( 'Alphabetical (A-Z)', 'elementor-addon' ),
-					'name_reverse' => esc_html__( 'Reverse Alphabetical (Z-A)', 'elementor-addon' ),
+					'name'  => esc_html__( 'Name (A-Z)', 'elementor-addon' ),
 					'date'  => esc_html__( 'Newest First', 'elementor-addon' ),
 					'date_oldest' => esc_html__( 'Oldest First', 'elementor-addon' ),
 				],
@@ -488,12 +487,6 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			case 'name': // Alphabetical
 				usort($categories, function ($a, $b) {
 					return strcmp($a->name, $b->name);
-				});
-				break;
-
-			case 'name_reverse': // Reverse Alphabetical
-				usort($categories, function ($a, $b) {
-					return strcmp($b->name, $a->name);
 				});
 				break;
 
