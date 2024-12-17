@@ -7,6 +7,7 @@ A custom Elementor widget to display WooCommerce product categories with their i
 - Show category images, names, and links to the category pages.
 - Fully customizable through Elementor's interface.
 - Supports multiple category selection.
+- Supports sorting
 
 ## Installation
 

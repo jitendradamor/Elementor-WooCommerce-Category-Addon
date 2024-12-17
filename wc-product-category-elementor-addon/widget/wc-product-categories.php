@@ -48,13 +48,31 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'section_heading_tag',
+			[
+				'label' => esc_html__( 'Heading Tag', 'elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'h1' => esc_html__( 'H1', 'elementor-addon' ),
+					'h2' => esc_html__( 'H2', 'elementor-addon' ),
+					'h3' => esc_html__( 'H3', 'elementor-addon' ),
+					'h4' => esc_html__( 'H4', 'elementor-addon' ),
+					'h5' => esc_html__( 'H5', 'elementor-addon' ),
+					'h6' => esc_html__( 'H6', 'elementor-addon' ),
+				],
+				'default' => 'h2', // Default to H2
+			]
+		);
+
 		// Add a control to add title
 		$this->add_control(
 			'title',
 			[
 				'label' => esc_html__( 'Title', 'elementor-addon' ),
-				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Categories', 'elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Your Heading Here', 'elementor-addon' ),
+				'placeholder' => esc_html__( 'Enter heading text', 'elementor-addon' ),
 			]
 		);
 
@@ -64,7 +82,64 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Description', 'elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Loreum ipsum', 'elementor-addon' ),
+				'default' => esc_html__( 'Your Description Here', 'elementor-addon' ),
+				'placeholder' => esc_html__( 'Enter Description text', 'elementor-addon' ),
+			]
+		);
+
+		$this->add_control(
+			'show_product_count',
+			[
+				'label' => esc_html__( 'Show Product Count', 'elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Show', 'elementor-addon' ),
+				'label_off' => esc_html__( 'Hide', 'elementor-addon' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+		// Add a control to hide empty categories
+		$this->add_control(
+			'hide_empty_categories',
+			[
+				'label'        => esc_html__( 'Hide Empty Categories', 'elementor-addon' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'elementor-addon' ),
+				'label_off'    => esc_html__( 'No', 'elementor-addon' ),
+				'return_value' => 'yes',
+				'default'      => 'yes',
+			]
+		);
+
+		// Add a control to sort product categories
+		$this->add_control(
+			'sort_order_by',
+			[
+				'label' => esc_html__( 'Order By', 'elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'title',
+				'options' => [
+					'title'      => esc_html__( 'Title', 'elementor-addon' ),
+					'date'       => esc_html__( 'Date', 'elementor-addon' ),
+					'random'     => esc_html__( 'Random', 'elementor-addon' ),
+					'menu_order' => esc_html__( 'Menu Order', 'elementor-addon' ),
+					'parent'     => esc_html__( 'Parent ID', 'elementor-addon' ),
+				],
+			]
+		);
+
+		// Sorting Order (ASC or DESC)
+		$this->add_control(
+			'sort_order',
+			[
+				'label' => esc_html__( 'Order', 'elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'ASC' => 'Ascending',
+					'DESC' => 'Descending',
+				],
+				'default' => 'ASC',
 			]
 		);
 
@@ -72,7 +147,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'selected_categories',
 			[
-				'label' => esc_html__('Select Categories', 'elementor-addon'),
+				'label' => esc_html__('Manual Selection', 'elementor-addon'),
 				'type' => \Elementor\Controls_Manager::SELECT2,
 				'options' => $this->get_product_categories(),
 				'multiple' => true,
@@ -135,7 +210,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'default' => 'left',
+				'default' => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .section-title' => 'text-align: {{VALUE}};',
 				],
@@ -196,7 +271,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'default' => 'left',
+				'default' => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .description' => 'text-align: {{VALUE}};',
 				],
@@ -344,7 +419,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'default' => 'left',
+				'default' => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .image-caption' => 'text-align: {{VALUE}};',
 				],
@@ -396,45 +471,84 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 				margin: 10px auto;
 			}
 		</style><?php
-		if ( !empty( $settings['title'] ) ) { ?>
-			<div class="section-title">
-				<?php echo $settings['title']; ?>
-			</div><?php
+
+		if ( !empty( $settings['title'] ) ) {
+			$tag = $settings['section_heading_tag']; // Get selected heading tag (h1 to h6)
+			?>
+			<<?php echo esc_attr( $tag ); ?> class="section-title">
+				<?php echo esc_html( $settings['title'] ); ?>
+			</<?php echo esc_attr( $tag ); ?>>
+			<?php
 		}
 		if ( !empty( $settings['description'] ) ) { ?>
 			<p class="description">
-				<?php echo $settings['description']; ?>
+				<?php echo esc_html($settings['description']); ?>
 			</p><?php
 		}
-		// Display selected categories
-		if (!empty($settings['selected_categories'])) {
-			$categories = $settings['selected_categories'];
 
-			echo '<div class="product-categories-grid">';
+		// Sorting parameters
+		$sort_order_by = $settings['sort_order_by'];
+		$sort_order   = $settings['sort_order'];
+		$hide_empty_categories = ($settings['hide_empty_categories'] === 'yes');
 
-			// Start rendering the image grid section
-			echo '<div class="image-grid">';
+		// Base query arguments
+		$args = [
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => $hide_empty_categories, // Only show categories with products
+			'orderby'    => $sort_order_by === 'date' ? 'id' : $sort_order_by,
+			'order'      => $sort_order,
+		];
 
-			foreach ($categories as $category_id) {
-				$category = get_term($category_id, 'product_cat');
-				if ($category) {
-					$image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
-					$image_url = $image_id ? wp_get_attachment_url($image_id) : wc_placeholder_img_src();
-					$category_link = get_term_link($category);
-
-					if (!is_wp_error($category_link)) {
-						// Render each image item
-						echo '<div class="image-grid-item">';
-							echo '<a href="' . esc_url($category_link) . '">';
-								echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($category->name) . '">';
-								echo '<p class="image-caption">' . esc_html($category->name) . '</p>';
-							echo '</a>';
-						echo '</div>';
-					}
-				}
-			}
-			echo '</div>';
-			echo '</div>';
+		// Handle manual category selection
+		if ( !empty( $settings['selected_categories'] ) ) {
+			$args['include'] = $settings['selected_categories']; // Only fetch selected categories
 		}
+
+		// Special sorting cases
+		if ( $sort_order_by === 'date' ) {
+			$args['orderby'] = 'id';
+		} elseif ( $sort_order_by === 'random' ) {
+			$args['orderby'] = 'rand';
+		} elseif ( $sort_order_by === 'parent' ) {
+			$args['orderby'] = 'parent';
+		}
+
+		// Fetch categories
+		$categories = get_terms( $args );
+
+		// Render categories
+		echo '<div class="product-categories-grid">';
+			if (!empty($categories)) {
+				// Start rendering the image grid section
+				echo '<div class="image-grid">';
+					foreach ($categories as $category_id) {
+						$category = get_term($category_id, 'product_cat');
+
+						if ($category) {
+							$image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+							$image_url = $image_id ? wp_get_attachment_url($image_id) : wc_placeholder_img_src();
+							$category_link = get_term_link($category);
+
+							if (!is_wp_error($category_link)) {
+								// Render each image item
+								echo '<div class="image-grid-item">';
+									echo '<a href="' . esc_url($category_link) . '">';
+										echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($category->name) . '">';
+										echo '<div class="image-caption">';
+											echo esc_html($category->name);
+											if( 'yes' === $settings['show_product_count'] ) {
+												echo '<span class="product-count"> (' . esc_html($category->count) . ')</span>';
+											}
+										echo '</div>';
+									echo '</a>';
+								echo '</div>';
+							}
+						}
+					}
+				echo '</div>';
+			} else {
+				echo '<p>' . esc_html__( 'No categories available.', 'elementor-addon' ) . '</p>';
+			}
+		echo '</div>';
 	}
 }
