@@ -114,17 +114,32 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 
 		// Add a control to sort product categories
 		$this->add_control(
-			'category_sort_order',
+			'sort_order_by',
 			[
 				'label' => esc_html__( 'Order By', 'elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'default' => 'none',
+				'default' => 'title',
 				'options' => [
-					'none'  => esc_html__( 'Default', 'elementor-addon' ),
-					'name'  => esc_html__( 'Name (A-Z)', 'elementor-addon' ),
-					'date'  => esc_html__( 'Newest First', 'elementor-addon' ),
-					'date_oldest' => esc_html__( 'Oldest First', 'elementor-addon' ),
+					'title'      => esc_html__( 'Title', 'elementor-addon' ),
+					'date'       => esc_html__( 'Date', 'elementor-addon' ),
+					'random'     => esc_html__( 'Random', 'elementor-addon' ),
+					'menu_order' => esc_html__( 'Menu Order', 'elementor-addon' ),
+					'parent'     => esc_html__( 'Parent ID', 'elementor-addon' ),
 				],
+			]
+		);
+
+		// Sorting Order (ASC or DESC)
+		$this->add_control(
+			'sort_order',
+			[
+				'label' => esc_html__( 'Order', 'elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'ASC' => 'Ascending',
+					'DESC' => 'Descending',
+				],
+				'default' => 'ASC',
 			]
 		);
 
@@ -459,54 +474,35 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			</p><?php
 		}
 
-		// Display selected categories
-		$selected_category_ids = $settings['selected_categories'] ?? [];
+		// Sorting parameters
+		$sort_order_by = $settings['sort_order_by'];
+		$sort_order   = $settings['sort_order'];
 		$hide_empty_categories = ($settings['hide_empty_categories'] === 'yes');
 
-		if (!empty($selected_category_ids)) {
-			$categories = [];
+		// Base query arguments
+		$args = [
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => $hide_empty_categories, // Only show categories with products
+			'orderby'    => $sort_order_by === 'date' ? 'id' : $sort_order_by,
+			'order'      => $sort_order,
+		];
 
-			// Fetch categories by IDs
-			foreach ($selected_category_ids as $cat_id) {
-				$category = get_term($cat_id, 'product_cat');
-				if ($category && !is_wp_error($category)) {
-					$categories[] = $category;
-				}
-
-			}
-		} else {
-			// Fetch all categories
-			$categories = get_terms([
-				'taxonomy' => 'product_cat',
-				'hide_empty' => $hide_empty_categories,
-			]);
+		// Handle manual category selection
+		if ( !empty( $settings['selected_categories'] ) ) {
+			$args['include'] = $settings['selected_categories']; // Only fetch selected categories
 		}
 
-		// Apply sorting based on selected option
-		switch ($settings['category_sort_order']) {
-			case 'name': // Alphabetical
-				usort($categories, function ($a, $b) {
-					return strcmp($a->name, $b->name);
-				});
-				break;
-
-			case 'date': // Newest First
-				usort($categories, function ($a, $b) {
-					return $b->term_id - $a->term_id;
-				});
-				break;
-
-			case 'date_oldest': // Oldest First
-				usort($categories, function ($a, $b) {
-					return $a->term_id - $b->term_id;
-				});
-				break;
-
-			case 'none': // No Sorting
-			default:
-				// Do nothing, retain original order
-				break;
+		// Special sorting cases
+		if ( $sort_order_by === 'date' ) {
+			$args['orderby'] = 'id';
+		} elseif ( $sort_order_by === 'random' ) {
+			$args['orderby'] = 'rand';
+		} elseif ( $sort_order_by === 'parent' ) {
+			$args['orderby'] = 'parent';
 		}
+
+		// Fetch categories
+		$categories = get_terms( $args );
 
 		// Render categories
 		echo '<div class="product-categories-grid">';
