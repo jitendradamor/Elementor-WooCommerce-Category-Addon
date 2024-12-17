@@ -87,6 +87,18 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'show_product_count',
+			[
+				'label' => esc_html__( 'Show Product Count', 'elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Show', 'elementor-addon' ),
+				'label_off' => esc_html__( 'Hide', 'elementor-addon' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
 		// Add a control to hide empty categories
 		$this->add_control(
 			'hide_empty_categories',
@@ -97,18 +109,6 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 				'label_off'    => esc_html__( 'No', 'elementor-addon' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
-			]
-		);
-
-		// Add a control to select product categories
-		$this->add_control(
-			'selected_categories',
-			[
-				'label' => esc_html__('Manual Selection', 'elementor-addon'),
-				'type' => \Elementor\Controls_Manager::SELECT2,
-				'options' => $this->get_product_categories(),
-				'multiple' => true,
-				'label_block' => true,
 			]
 		);
 
@@ -140,6 +140,18 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 					'DESC' => 'Descending',
 				],
 				'default' => 'ASC',
+			]
+		);
+
+		// Add a control to select product categories
+		$this->add_control(
+			'selected_categories',
+			[
+				'label' => esc_html__('Manual Selection', 'elementor-addon'),
+				'type' => \Elementor\Controls_Manager::SELECT2,
+				'options' => $this->get_product_categories(),
+				'multiple' => true,
+				'label_block' => true,
 			]
 		);
 
@@ -511,6 +523,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 				echo '<div class="image-grid">';
 					foreach ($categories as $category_id) {
 						$category = get_term($category_id, 'product_cat');
+
 						if ($category) {
 							$image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
 							$image_url = $image_id ? wp_get_attachment_url($image_id) : wc_placeholder_img_src();
@@ -521,7 +534,12 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 								echo '<div class="image-grid-item">';
 									echo '<a href="' . esc_url($category_link) . '">';
 										echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($category->name) . '">';
-										echo '<p class="image-caption">' . esc_html($category->name) . '</p>';
+										echo '<div class="image-caption">';
+											echo esc_html($category->name);
+											if( 'yes' === $settings['show_product_count'] ) {
+												echo '<span class="product-count"> (' . esc_html($category->count) . ')</span>';
+											}
+										echo '</div>';
 									echo '</a>';
 								echo '</div>';
 							}
