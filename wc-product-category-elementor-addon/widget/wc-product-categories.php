@@ -491,7 +491,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			</p><?php
 		}
 
-		if (class_exists('WooCommerce')) {	
+		if (class_exists('WooCommerce')) {
 
 			// Sorting parameters
 			$sort_order_by = $settings['sort_order_by'];
