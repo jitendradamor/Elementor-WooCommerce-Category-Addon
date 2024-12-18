@@ -129,7 +129,6 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 				'options' => [
 					'title'      => esc_html__( 'Title', 'elementor-addon' ),
 					'date'       => esc_html__( 'Date', 'elementor-addon' ),
-					'random'     => esc_html__( 'Random', 'elementor-addon' ),
 					'menu_order' => esc_html__( 'Menu Order', 'elementor-addon' ),
 					'parent'     => esc_html__( 'Parent ID', 'elementor-addon' ),
 				],
@@ -515,10 +514,6 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			// Special sorting cases
 			if ( $sort_order_by === 'date' ) {
 				$args['orderby'] = 'id';
-			} elseif ( $sort_order_by === 'random' ) {
-				$args['orderby'] = 'rand';
-			} elseif ( $sort_order_by === 'parent' ) {
-				$args['orderby'] = 'parent';
 			}
 
 			// Fetch categories
