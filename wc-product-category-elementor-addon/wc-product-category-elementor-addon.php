@@ -5,7 +5,10 @@
  * Version:     1.0.0
  * Author: Akash Patel
  * Author URI:
- * Text Domain: elementor-addon
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+ * Text Domain: wc-product-category-elementor-addon
  *
  * Requires Plugins: elementor, woocommerce
  * Elementor tested up to: 3.25.11
@@ -38,7 +41,7 @@ class WC_Product_Category_Elementor_Addon {
     public function elementor_not_found_notice() {
         ?>
         <div class="notice notice-warning is-dismissible">
-            <p><?php esc_html_e( 'Elementor is not installed or activated. Please install and activate Elementor to use the WC Product Category Addon.', 'wc-product-category-addon' ); ?></p>
+            <p><?php esc_html_e( 'Elementor is not installed or activated. Please install and activate Elementor to use the WC Product Category Addon.', 'wc-product-category-elementor-addon' ); ?></p>
         </div>
         <?php
     }

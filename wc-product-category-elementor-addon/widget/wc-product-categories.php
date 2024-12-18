@@ -29,7 +29,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 	}
 
 	public function get_title(): string {
-		return esc_html__( 'WC Product Categories', 'elementor-addon' );
+		return esc_html__( 'WC Product Categories', 'wc-product-category-elementor-addon' );
 	}
 
 	public function get_icon(): string {
@@ -50,7 +50,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => esc_html__( 'Section', 'elementor-addon' ),
+				'label' => esc_html__( 'Section', 'wc-product-category-elementor-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -58,15 +58,15 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'section_heading_tag',
 			[
-				'label' => esc_html__( 'Heading Tag', 'elementor-addon' ),
+				'label' => esc_html__( 'Heading Tag', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'h1' => esc_html__( 'H1', 'elementor-addon' ),
-					'h2' => esc_html__( 'H2', 'elementor-addon' ),
-					'h3' => esc_html__( 'H3', 'elementor-addon' ),
-					'h4' => esc_html__( 'H4', 'elementor-addon' ),
-					'h5' => esc_html__( 'H5', 'elementor-addon' ),
-					'h6' => esc_html__( 'H6', 'elementor-addon' ),
+					'h1' => esc_html__( 'H1', 'wc-product-category-elementor-addon' ),
+					'h2' => esc_html__( 'H2', 'wc-product-category-elementor-addon' ),
+					'h3' => esc_html__( 'H3', 'wc-product-category-elementor-addon' ),
+					'h4' => esc_html__( 'H4', 'wc-product-category-elementor-addon' ),
+					'h5' => esc_html__( 'H5', 'wc-product-category-elementor-addon' ),
+					'h6' => esc_html__( 'H6', 'wc-product-category-elementor-addon' ),
 				],
 				'default' => 'h2', // Default to H2
 			]
@@ -76,10 +76,10 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title',
 			[
-				'label' => esc_html__( 'Title', 'elementor-addon' ),
+				'label' => esc_html__( 'Title', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Your Heading Here', 'elementor-addon' ),
-				'placeholder' => esc_html__( 'Enter heading text', 'elementor-addon' ),
+				'default' => esc_html__( 'Your Heading Here', 'wc-product-category-elementor-addon' ),
+				'placeholder' => esc_html__( 'Enter heading text', 'wc-product-category-elementor-addon' ),
 			]
 		);
 
@@ -87,20 +87,20 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'description',
 			[
-				'label' => esc_html__( 'Description', 'elementor-addon' ),
+				'label' => esc_html__( 'Description', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Your Description Here', 'elementor-addon' ),
-				'placeholder' => esc_html__( 'Enter Description text', 'elementor-addon' ),
+				'default' => esc_html__( 'Your Description Here', 'wc-product-category-elementor-addon' ),
+				'placeholder' => esc_html__( 'Enter Description text', 'wc-product-category-elementor-addon' ),
 			]
 		);
 
 		$this->add_control(
 			'show_product_count',
 			[
-				'label' => esc_html__( 'Show Product Count', 'elementor-addon' ),
+				'label' => esc_html__( 'Show Product Count', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'elementor-addon' ),
-				'label_off' => esc_html__( 'Hide', 'elementor-addon' ),
+				'label_on' => esc_html__( 'Show', 'wc-product-category-elementor-addon' ),
+				'label_off' => esc_html__( 'Hide', 'wc-product-category-elementor-addon' ),
 				'return_value' => 'yes',
 				'default' => 'no',
 			]
@@ -110,10 +110,10 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'hide_empty_categories',
 			[
-				'label'        => esc_html__( 'Hide Empty Categories', 'elementor-addon' ),
+				'label'        => esc_html__( 'Hide Empty Categories', 'wc-product-category-elementor-addon' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'elementor-addon' ),
-				'label_off'    => esc_html__( 'No', 'elementor-addon' ),
+				'label_on'     => esc_html__( 'Yes', 'wc-product-category-elementor-addon' ),
+				'label_off'    => esc_html__( 'No', 'wc-product-category-elementor-addon' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 			]
@@ -123,14 +123,14 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'sort_order_by',
 			[
-				'label' => esc_html__( 'Order By', 'elementor-addon' ),
+				'label' => esc_html__( 'Order By', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'title',
 				'options' => [
-					'title'      => esc_html__( 'Title', 'elementor-addon' ),
-					'date'       => esc_html__( 'Date', 'elementor-addon' ),
-					'menu_order' => esc_html__( 'Menu Order', 'elementor-addon' ),
-					'parent'     => esc_html__( 'Parent ID', 'elementor-addon' ),
+					'title'      => esc_html__( 'Title', 'wc-product-category-elementor-addon' ),
+					'date'       => esc_html__( 'Date', 'wc-product-category-elementor-addon' ),
+					'menu_order' => esc_html__( 'Menu Order', 'wc-product-category-elementor-addon' ),
+					'parent'     => esc_html__( 'Parent ID', 'wc-product-category-elementor-addon' ),
 				],
 			]
 		);
@@ -139,7 +139,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'sort_order',
 			[
-				'label' => esc_html__( 'Order', 'elementor-addon' ),
+				'label' => esc_html__( 'Order', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
 					'ASC' => 'Ascending',
@@ -153,7 +153,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'selected_categories',
 			[
-				'label' => esc_html__('Manual Selection', 'elementor-addon'),
+				'label' => esc_html__('Manual Selection', 'wc-product-category-elementor-addon'),
 				'type' => \Elementor\Controls_Manager::SELECT2,
 				'options' => $this->get_product_categories(),
 				'multiple' => true,
@@ -169,7 +169,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => esc_html__( 'Title', 'elementor-addon' ),
+				'label' => esc_html__( 'Title', 'wc-product-category-elementor-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -178,7 +178,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => esc_html__( 'Text Color', 'elementor-addon' ),
+				'label' => esc_html__( 'Text Color', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .section-title' => 'color: {{VALUE}};',
@@ -191,7 +191,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'label' => esc_html__( 'Typography', 'elementor-addon' ),
+				'label' => esc_html__( 'Typography', 'wc-product-category-elementor-addon' ),
 				'selector' => '{{WRAPPER}} .section-title',
 			]
 		);
@@ -200,19 +200,19 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title_alignment',
 			[
-				'label' => esc_html__( 'Alignment', 'elementor-addon' ),
+				'label' => esc_html__( 'Alignment', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'elementor-addon' ),
+						'title' => esc_html__( 'Left', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'elementor-addon' ),
+						'title' => esc_html__( 'Center', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'elementor-addon' ),
+						'title' => esc_html__( 'Right', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -230,7 +230,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_description_style',
 			[
-				'label' => esc_html__( 'Description', 'elementor-addon' ),
+				'label' => esc_html__( 'Description', 'wc-product-category-elementor-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -239,7 +239,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'description_color',
 			[
-				'label' => esc_html__( 'Text Color', 'elementor-addon' ),
+				'label' => esc_html__( 'Text Color', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .description' => 'color: {{VALUE}};',
@@ -252,7 +252,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'description_typography',
-				'label' => esc_html__( 'Typography', 'elementor-addon' ),
+				'label' => esc_html__( 'Typography', 'wc-product-category-elementor-addon' ),
 				'selector' => '{{WRAPPER}} .description',
 			]
 		);
@@ -261,19 +261,19 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'description_alignment',
 			[
-				'label' => esc_html__( 'Alignment', 'elementor-addon' ),
+				'label' => esc_html__( 'Alignment', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'elementor-addon' ),
+						'title' => esc_html__( 'Left', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'elementor-addon' ),
+						'title' => esc_html__( 'Center', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'elementor-addon' ),
+						'title' => esc_html__( 'Right', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -291,7 +291,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_image_grid_style',
 			[
-				'label' => esc_html__( 'Image Grid', 'elementor-addon' ),
+				'label' => esc_html__( 'Image Grid', 'wc-product-category-elementor-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -300,7 +300,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'image_grid_item_spacing',
 			[
-				'label' => esc_html__( 'Item Spacing', 'elementor-addon' ),
+				'label' => esc_html__( 'Item Spacing', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em', 'rem' ],
 				'range' => [
@@ -327,15 +327,15 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'image_grid_columns',
 			[
-				'label' => esc_html__( 'Columns', 'elementor-addon' ),
+				'label' => esc_html__( 'Columns', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'1' => esc_html__( '1 Column', 'elementor-addon' ),
-					'2' => esc_html__( '2 Columns', 'elementor-addon' ),
-					'3' => esc_html__( '3 Columns', 'elementor-addon' ),
-					'4' => esc_html__( '4 Columns', 'elementor-addon' ),
-					'5' => esc_html__( '5 Columns', 'elementor-addon' ),
-					'6' => esc_html__( '6 Columns', 'elementor-addon' ),
+					'1' => esc_html__( '1 Column', 'wc-product-category-elementor-addon' ),
+					'2' => esc_html__( '2 Columns', 'wc-product-category-elementor-addon' ),
+					'3' => esc_html__( '3 Columns', 'wc-product-category-elementor-addon' ),
+					'4' => esc_html__( '4 Columns', 'wc-product-category-elementor-addon' ),
+					'5' => esc_html__( '5 Columns', 'wc-product-category-elementor-addon' ),
+					'6' => esc_html__( '6 Columns', 'wc-product-category-elementor-addon' ),
 				],
 				'default' => '3',
 				'selectors' => [
@@ -348,7 +348,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'image_grid_item_border_radius',
 			[
-				'label' => esc_html__( 'Item Border Radius', 'elementor-addon' ),
+				'label' => esc_html__( 'Item Border Radius', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em', 'rem' ],
 				'range' => [
@@ -378,7 +378,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'image_caption_style',
 			[
-				'label' => esc_html__( 'Image Caption', 'elementor-addon' ),
+				'label' => esc_html__( 'Image Caption', 'wc-product-category-elementor-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -387,7 +387,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'image_caption_font_color',
 			[
-				'label' => esc_html__( 'Color', 'elementor-addon' ),
+				'label' => esc_html__( 'Color', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .image-caption' => 'color: {{VALUE}};',
@@ -400,7 +400,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'image_caption_typography',
-				'label' => esc_html__( 'Typography', 'elementor-addon' ),
+				'label' => esc_html__( 'Typography', 'wc-product-category-elementor-addon' ),
 				'selector' => '{{WRAPPER}} .image-caption',
 			]
 		);
@@ -409,19 +409,19 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		$this->add_control(
 			'image_caption_alignment',
 			[
-				'label' => esc_html__( 'Alignment', 'elementor-addon' ),
+				'label' => esc_html__( 'Alignment', 'wc-product-category-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'elementor-addon' ),
+						'title' => esc_html__( 'Left', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'elementor-addon' ),
+						'title' => esc_html__( 'Center', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'elementor-addon' ),
+						'title' => esc_html__( 'Right', 'wc-product-category-elementor-addon' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -550,7 +550,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 						}
 					echo '</div>';
 				} else {
-					echo '<p>' . esc_html__( 'No categories available.', 'elementor-addon' ) . '</p>';
+					echo '<p>' . esc_html__( 'No categories available.', 'wc-product-category-elementor-addon' ) . '</p>';
 				}
 			echo '</div>';
 		}
