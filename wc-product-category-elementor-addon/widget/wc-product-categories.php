@@ -458,7 +458,6 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 				overflow: hidden;
 				transition: transform 0.3s ease;
 				display: flex; /* Ensures centering */
-				align-items: center; /* Centers vertically */
 				justify-content: center; /* Centers horizontally */
 			}
 
