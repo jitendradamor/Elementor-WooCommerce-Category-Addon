@@ -1,4 +1,12 @@
-# WC Product Category Elementor Addon
+=== WC Product Category Elementor Addon ===
+Contributors: Akash patel
+Tags: elementor, woocommerce, categories, category, taxonomy, product category, Addon
+Requires at least: 6.3
+Tested up to: 6.6
+Requires PHP: 7.4
+Requires Elementor: 3.23
+
+== Description ==
 
 A custom Elementor widget to display WooCommerce product categories with their images, names, and permalinks. This plugin provides a flexible and customizable way to showcase WooCommerce product categories on your website.
 

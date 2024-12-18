@@ -14,7 +14,7 @@
  */
 
 class WC_Product_Category_Elementor_Addon {
-    
+
     public function __construct() {
         add_action( 'init', [ $this, 'init' ] );
     }

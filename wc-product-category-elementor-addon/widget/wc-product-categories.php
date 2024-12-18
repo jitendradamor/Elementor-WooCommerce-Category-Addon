@@ -7,8 +7,8 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 		if (!class_exists('WooCommerce')) {
 			// WooCommerce is not active; exit the method logic
 			return [];
-		}	
-		
+		}
+
 		$categories = get_terms([
 			'taxonomy' => 'product_cat',
 			'hide_empty' => false,
