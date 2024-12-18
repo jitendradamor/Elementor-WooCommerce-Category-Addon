@@ -2,6 +2,13 @@
 class WC_Product_Categories extends \Elementor\Widget_Base {
 
 	private function get_product_categories(): array {
+
+		// Check if WooCommerce is active
+		if (!class_exists('WooCommerce')) {
+			// WooCommerce is not active; exit the method logic
+			return [];
+		}	
+		
 		$categories = get_terms([
 			'taxonomy' => 'product_cat',
 			'hide_empty' => false,
@@ -486,69 +493,72 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			</p><?php
 		}
 
-		// Sorting parameters
-		$sort_order_by = $settings['sort_order_by'];
-		$sort_order   = $settings['sort_order'];
-		$hide_empty_categories = ($settings['hide_empty_categories'] === 'yes');
+		if (class_exists('WooCommerce')) {	
 
-		// Base query arguments
-		$args = [
-			'taxonomy'   => 'product_cat',
-			'hide_empty' => $hide_empty_categories, // Only show categories with products
-			'orderby'    => $sort_order_by === 'date' ? 'id' : $sort_order_by,
-			'order'      => $sort_order,
-		];
+			// Sorting parameters
+			$sort_order_by = $settings['sort_order_by'];
+			$sort_order   = $settings['sort_order'];
+			$hide_empty_categories = ($settings['hide_empty_categories'] === 'yes');
 
-		// Handle manual category selection
-		if ( !empty( $settings['selected_categories'] ) ) {
-			$args['include'] = $settings['selected_categories']; // Only fetch selected categories
-		}
+			// Base query arguments
+			$args = [
+				'taxonomy'   => 'product_cat',
+				'hide_empty' => $hide_empty_categories, // Only show categories with products
+				'orderby'    => $sort_order_by === 'date' ? 'id' : $sort_order_by,
+				'order'      => $sort_order,
+			];
 
-		// Special sorting cases
-		if ( $sort_order_by === 'date' ) {
-			$args['orderby'] = 'id';
-		} elseif ( $sort_order_by === 'random' ) {
-			$args['orderby'] = 'rand';
-		} elseif ( $sort_order_by === 'parent' ) {
-			$args['orderby'] = 'parent';
-		}
+			// Handle manual category selection
+			if ( !empty( $settings['selected_categories'] ) ) {
+				$args['include'] = $settings['selected_categories']; // Only fetch selected categories
+			}
 
-		// Fetch categories
-		$categories = get_terms( $args );
+			// Special sorting cases
+			if ( $sort_order_by === 'date' ) {
+				$args['orderby'] = 'id';
+			} elseif ( $sort_order_by === 'random' ) {
+				$args['orderby'] = 'rand';
+			} elseif ( $sort_order_by === 'parent' ) {
+				$args['orderby'] = 'parent';
+			}
 
-		// Render categories
-		echo '<div class="product-categories-grid">';
-			if (!empty($categories)) {
-				// Start rendering the image grid section
-				echo '<div class="image-grid">';
-					foreach ($categories as $category_id) {
-						$category = get_term($category_id, 'product_cat');
+			// Fetch categories
+			$categories = get_terms( $args );
 
-						if ($category) {
-							$image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
-							$image_url = $image_id ? wp_get_attachment_url($image_id) : wc_placeholder_img_src();
-							$category_link = get_term_link($category);
+			// Render categories
+			echo '<div class="product-categories-grid">';
+				if (!empty($categories)) {
+					// Start rendering the image grid section
+					echo '<div class="image-grid">';
+						foreach ($categories as $category_id) {
+							$category = get_term($category_id, 'product_cat');
 
-							if (!is_wp_error($category_link)) {
-								// Render each image item
-								echo '<div class="image-grid-item">';
-									echo '<a href="' . esc_url($category_link) . '">';
-										echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($category->name) . '">';
-										echo '<div class="image-caption">';
-											echo esc_html($category->name);
-											if( 'yes' === $settings['show_product_count'] ) {
-												echo '<span class="product-count"> (' . esc_html($category->count) . ')</span>';
-											}
-										echo '</div>';
-									echo '</a>';
-								echo '</div>';
+							if ($category) {
+								$image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+								$image_url = $image_id ? wp_get_attachment_url($image_id) : wc_placeholder_img_src();
+								$category_link = get_term_link($category);
+
+								if (!is_wp_error($category_link)) {
+									// Render each image item
+									echo '<div class="image-grid-item">';
+										echo '<a href="' . esc_url($category_link) . '">';
+											echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($category->name) . '">';
+											echo '<div class="image-caption">';
+												echo esc_html($category->name);
+												if( 'yes' === $settings['show_product_count'] ) {
+													echo '<span class="product-count"> (' . esc_html($category->count) . ')</span>';
+												}
+											echo '</div>';
+										echo '</a>';
+									echo '</div>';
+								}
 							}
 						}
-					}
-				echo '</div>';
-			} else {
-				echo '<p>' . esc_html__( 'No categories available.', 'elementor-addon' ) . '</p>';
-			}
-		echo '</div>';
+					echo '</div>';
+				} else {
+					echo '<p>' . esc_html__( 'No categories available.', 'elementor-addon' ) . '</p>';
+				}
+			echo '</div>';
+		}
 	}
 }
