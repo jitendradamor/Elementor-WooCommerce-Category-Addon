@@ -1,24 +1,27 @@
-=== WC Product Category Elementor Addon ===
+=== Page Builder Widgets ===
 Contributors: Akash patel
-Tags: elementor, woocommerce, categories, category, taxonomy, product category, Addon
+Tags: elementor, woocommerce, widget, categories, product category
 Requires at least: 6.3
-Tested up to: 6.6
+Tested up to: 6.7
+Stable tag: 1.0.0
 Requires PHP: 7.4
 Requires Elementor: 3.23
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Page Builder Widgets for Elementor.
 
 == Description ==
-
 A custom Elementor widget to display WooCommerce product categories with their images, names, and permalinks. This plugin provides a flexible and customizable way to showcase WooCommerce product categories on your website.
 
-## Features
+== Features ==
 - Display WooCommerce product categories dynamically.
 - Show category images, names, and links to the category pages.
 - Fully customizable through Elementor's interface.
 - Supports multiple category selection.
 - Supports sorting
 
-## Installation
-
+== Installation ==
 1. **Download the Plugin:**
    Download the plugin files and extract them.
 
@@ -33,28 +36,14 @@ A custom Elementor widget to display WooCommerce product categories with their i
    - Search for the "WooCommerce Categories" widget in the Elementor panel.
    - Drag and drop it onto your page.
 
-## Usage
-
-1. Drag the **WC Product Categories** widget onto your Elementor page.
+== Usage ==
+1. Drag the **WooCommerce Categories** widget onto your Elementor page.
 2. Configure the following options:
+   - **Heading Tag:** Select heading tag h1 to h6 for title. 
    - **Title:** Add a title to display above the categories.
    - **Description:** Add a short description below the title.
+   - **Show Product Count:** Show/Hide product count
+   - **Hide Empty Categories:** Choose if you want to hide categories that doesn't have any product assigned.
+   - **Order By:** Sort listing by Title, Date & Menu Order.
    - **Select Categories:** Choose the WooCommerce categories you want to display.
 3. Style the widget using Elementor's styling options.
-
-## Code Example
-
-The widget dynamically displays the selected WooCommerce product categories using their images and links:
-
-```php
-if (!empty($settings['selected_categories'])) {
-    foreach ($settings['selected_categories'] as $category_id) {
-        $category = get_term($category_id, 'product_cat');
-        if ($category) {
-            $image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
-            $image_url = $image_id ? wp_get_attachment_url($image_id) : wc_placeholder_img_src();
-            $category_link = get_term_link($category);
-            echo "<a href='{$category_link}'><img src='{$image_url}' alt='{$category->name}' /></a>";
-        }
-    }
-}
