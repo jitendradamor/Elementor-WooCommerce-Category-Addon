@@ -37,7 +37,7 @@ A custom Elementor widget to display WooCommerce product categories with their i
    - Drag and drop it onto your page.
 
 == Usage ==
-1. Drag the **Page Builder Widgets** widget onto your Elementor page.
+1. Drag the **WooCommerce Categories** widget onto your Elementor page.
 2. Configure the following options:
    - **Heading Tag:** Select heading tag h1 to h6 for title. 
    - **Title:** Add a title to display above the categories.
