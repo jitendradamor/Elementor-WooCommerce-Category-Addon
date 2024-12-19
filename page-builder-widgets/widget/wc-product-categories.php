@@ -490,7 +490,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			</p><?php
 		}
 
-		if (class_exists('WooCommerce')) {	
+		if (class_exists('WooCommerce')) {
 
 			// Sorting parameters
 			$sort_order_by = $settings['sort_order_by'];
@@ -528,14 +528,13 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 
 							if ($category) {
 								$image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
-								$image_url = $image_id ? wp_get_attachment_url($image_id) : wc_placeholder_img_src();
 								$category_link = get_term_link($category);
 
 								if (!is_wp_error($category_link)) {
 									// Render each image item
 									echo '<div class="image-grid-item">';
 										echo '<a href="' . esc_url($category_link) . '">';
-											echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($category->name) . '">';
+											echo wp_kses_post( $image_id ? wp_get_attachment_image($image_id, 'full') : wc_placeholder_img() );
 											echo '<div class="image-caption">';
 												echo esc_html($category->name);
 												if( 'yes' === $settings['show_product_count'] ) {
