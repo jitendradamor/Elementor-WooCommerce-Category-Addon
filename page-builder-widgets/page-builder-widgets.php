@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name: WC Product Category Elementor Addon
- * Description: WooCommerce Categories listing Addon with images for Elementor.
+ * Plugin Name: Page Builder Widgets
+ * Description: Page Builder Widgets for Elementor.
  * Version:     1.0.0
  * Author: Akash Patel
  * Author URI:
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
- * Text Domain: wc-product-category-elementor-addon
+ * Text Domain: page-builder-widgets
  *
  * Requires Plugins: elementor, woocommerce
  * Elementor tested up to: 3.25.11
@@ -16,7 +16,7 @@
  * WooCommerce tested up to: 9.4.3
  */
 
-class WC_Product_Category_Elementor_Addon {
+class Page_Builder_Widgets {
 
     public function __construct() {
         add_action( 'init', [ $this, 'init' ] );
@@ -41,11 +41,11 @@ class WC_Product_Category_Elementor_Addon {
     public function elementor_not_found_notice() {
         ?>
         <div class="notice notice-warning is-dismissible">
-            <p><?php esc_html_e( 'Elementor is not installed or activated. Please install and activate Elementor to use the WC Product Category Addon.', 'wc-product-category-elementor-addon' ); ?></p>
+            <p><?php esc_html_e( 'Elementor is not installed or activated. Please install and activate Elementor to use the WC Product Category Addon.', 'page-builder-widgets' ); ?></p>
         </div>
         <?php
     }
 }
 
 // Initialize the addon
-new WC_Product_Category_Elementor_Addon();
+new Page_Builder_Widgets();
