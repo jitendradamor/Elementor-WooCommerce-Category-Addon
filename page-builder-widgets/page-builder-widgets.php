@@ -1,21 +1,20 @@
 <?php
 /**
- * Plugin Name: Page Builder Widgets
- * Description: Page Builder Widgets for Elementor.
- * Version:     1.0.0
- * Author: Akash Patel
- * Author URI:
- * License: GPL v2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
-
- * Text Domain: page-builder-widgets
- *
- * Requires Plugins: elementor, woocommerce
+ * Plugin Name:       Page Builder Widgets
+ * Description:       Page Builder Widgets for Elementor.
+ * Version:           1.0.0
+ * Requires at least: 6.3
+ * Requires PHP:      7.4
+ * Author:            Agreem Technologies
+ * Author URI:        https://agreemtech.com/
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       page-builder-widgets
+ * Requires Plugins:  elementor, woocommerce
  * Elementor tested up to: 3.25.11
  * Elementor Pro tested up to: 3.25.4
  * WooCommerce tested up to: 9.4.3
  */
-
 class Page_Builder_Widgets {
 
     public function __construct() {

@@ -1,11 +1,8 @@
 === Page Builder Widgets ===
-Contributors: Akash patel
+Contributors: agreem2016
 Tags: elementor, woocommerce, widget, categories, product category
-Requires at least: 6.3
 Tested up to: 6.7
 Stable tag: 1.0.0
-Requires PHP: 7.4
-Requires Elementor: 3.23
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,3 +44,11 @@ A custom Elementor widget to display WooCommerce product categories with their i
    - **Order By:** Sort listing by Title, Date & Menu Order.
    - **Select Categories:** Choose the WooCommerce categories you want to display.
 3. Style the widget using Elementor's styling options.
+
+== Frequently Asked Questions ==
+
+== Changelog ==
+
+== Upgrade Notice ==
+
+== Screenshots ==
