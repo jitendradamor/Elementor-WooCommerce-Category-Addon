@@ -11,9 +11,9 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       page-builder-widgets
  * Requires Plugins:  elementor, woocommerce
- * Elementor tested up to: 3.25.11
+ * Elementor tested up to: 3.26.5
  * Elementor Pro tested up to: 3.25.4
- * WooCommerce tested up to: 9.4.3
+ * WooCommerce tested up to: 9.5.2
  */
 class Page_Builder_Widgets {
 
