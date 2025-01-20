@@ -437,44 +437,6 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 
 	protected function render(): void {
 		$settings = $this->get_settings_for_display();
-		?>
-		<style>
-			.product-categories-grid {
-				display: flex; /* Use Flexbox for centering */
-				justify-content: center; /* Center horizontally */
-				align-items: center; /* Center vertically */
-			}
-
-			.image-grid {
-				display: grid;
-				gap: <?php echo esc_attr( $settings['image_grid_item_spacing']['size'] . $settings['image_grid_item_spacing']['unit'] ); ?>;
-				text-align: center;
-			}
-
-			.image-grid-item {
-				position: relative;
-				overflow: hidden;
-				transition: transform 0.3s ease;
-				display: flex; /* Ensures centering */
-				justify-content: center; /* Centers horizontally */
-			}
-
-			.image-grid-item img {
-				width: 100%; /* Allow natural width */
-				height: auto; /* Maintain aspect ratio */
-				max-width: 300px;
-				object-fit: cover;
-				border-radius: <?php echo esc_attr( $settings['image_grid_item_border_radius']['size'] . $settings['image_grid_item_border_radius']['unit'] ); ?>;
-			}
-
-			.image-grid-item:hover {
-				transform: scale(1.02);
-			}
-
-			.image-grid p {
-				margin: 10px auto;
-			}
-		</style><?php
 
 		if ( !empty( $settings['title'] ) ) {
 			$tag = $settings['section_heading_tag']; // Get selected heading tag (h1 to h6)

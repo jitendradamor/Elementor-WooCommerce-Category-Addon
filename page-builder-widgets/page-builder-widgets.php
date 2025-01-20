@@ -30,11 +30,26 @@ class Page_Builder_Widgets {
 
         // Register the widget
         add_action( 'elementor/widgets/register', [ $this, 'register_WC_product_category_elementor_addon' ] );
+
+        // Enqueue widget styles
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_widget_styles' ] );
     }
 
     public function register_WC_product_category_elementor_addon( $widgets_manager ) {
         require_once( __DIR__ . '/widget/wc-product-categories.php' );
         $widgets_manager->register( new \WC_Product_Categories() );
+    }
+
+    public function enqueue_widget_styles() {
+        // Define the plugin URL
+        $plugin_url = plugin_dir_url( __FILE__ );
+        
+        wp_enqueue_style(
+            'wc-product-categories-style', 
+            $plugin_url . 'assets/css/wc-product-categories.css', 
+            [],
+            false
+        );
     }
 
     public function elementor_not_found_notice() {
