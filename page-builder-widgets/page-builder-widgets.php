@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Page Builder Widgets
  * Description:       Page Builder Widgets for Elementor.
- * Version:           0.1
+ * Version:           1.0.0
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Agreem Technologies
@@ -18,7 +18,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-define( 'PBW_VERSION', '0.1' );
+define( 'PBW_VERSION', '1.0.0' );
 define( 'PBW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 class PBW_Module {
