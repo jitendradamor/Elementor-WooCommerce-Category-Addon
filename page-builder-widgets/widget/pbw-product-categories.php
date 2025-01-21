@@ -1,7 +1,7 @@
 <?php
-class WC_Product_Categories extends \Elementor\Widget_Base {
+class PBW_Product_Categories extends \Elementor\Widget_Base {
 
-	private function get_product_categories(): array {
+	private function pbw_get_product_categories(): array {
 
 		// Check if WooCommerce is active
 		if (!class_exists('WooCommerce')) {
@@ -25,11 +25,11 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 	}
 
 	public function get_name(): string {
-		return 'WC_Product_Categories';
+		return 'PBW_Product_Categories';
 	}
 
 	public function get_title(): string {
-		return esc_html__( 'WC Product Categories', 'page-builder-widgets' );
+		return esc_html__( 'PBW Product Categories', 'page-builder-widgets' );
 	}
 
 	public function get_icon(): string {
@@ -154,7 +154,7 @@ class WC_Product_Categories extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__('Manual Selection', 'page-builder-widgets'),
 				'type' => \Elementor\Controls_Manager::SELECT2,
-				'options' => $this->get_product_categories(),
+				'options' => $this->pbw_get_product_categories(),
 				'multiple' => true,
 				'label_block' => true,
 			]
