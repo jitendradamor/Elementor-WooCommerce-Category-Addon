@@ -2,7 +2,7 @@
 Contributors: agreem2016
 Tags: elementor, woocommerce, widget, categories, product category
 Tested up to: 6.7
-Stable tag: 1.0.0
+Stable tag: 0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,11 +30,11 @@ A custom Elementor widget to display WooCommerce product categories with their i
 
 3. **Use in Elementor:**
    - Open any page with Elementor.
-   - Search for the "WooCommerce Categories" widget in the Elementor panel.
+   - Search for the "PBW Product Categories" widget in the Elementor panel.
    - Drag and drop it onto your page.
 
 == Usage ==
-1. Drag the **WooCommerce Categories** widget onto your Elementor page.
+1. Drag the **PBW Product Categories** widget onto your Elementor page.
 2. Configure the following options:
    - **Heading Tag:** Select heading tag h1 to h6 for title. 
    - **Title:** Add a title to display above the categories.
@@ -45,10 +45,7 @@ A custom Elementor widget to display WooCommerce product categories with their i
    - **Select Categories:** Choose the WooCommerce categories you want to display.
 3. Style the widget using Elementor's styling options.
 
-== Frequently Asked Questions ==
-
 == Changelog ==
 
-== Upgrade Notice ==
-
-== Screenshots ==
+= 0.1 =
+Initial release.
